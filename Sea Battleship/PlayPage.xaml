@@ -1,0 +1,44 @@
+﻿<Page x:Class="Sea_Battleship.PlayPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Sea_Battleship"
+      xmlns:gif="http://wpfanimatedgif.codeplex.com"
+        gif:ImageBehavior.AnimateInDesignMode="True"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="PlayPage">
+    <Grid Margin="0">
+        <Grid.Background>
+            <ImageBrush ImageSource="Resources/main.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <Grid Height="25" VerticalAlignment="Top">
+            <Grid.Background>
+                <SolidColorBrush Color="White" Opacity="0.635"/>
+            </Grid.Background>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="30 px"/>
+            </Grid.ColumnDefinitions>
+            <Menu Grid.Column="0" VerticalContentAlignment="Stretch"  ScrollViewer.VerticalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center" Background="{x:Null}" HorizontalAlignment="Center">
+                <MenuItem  Header ="Сохранить игру" Name="SaveGameItem" Click="SaveGameItem_Click" HeaderStringFormat="" VerticalContentAlignment="Stretch" Padding="0" HorizontalContentAlignment="Stretch" Width="130" Background="{x:Null}" Height="25" >
+                </MenuItem>
+                <MenuItem  Header="Правила" Name="RuleItem" Click="RuleItem_Click" Width="130" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" />
+                <MenuItem Header="Об авторах" Name="AboutItem" Click="AboutItem_Click" Width="130" />
+                <MenuItem Header="Пауза" Name="PauseItem"  Width="130" Click="Pause_Click" />
+                <MenuItem Header="Выход" Name="ExitItem" Click="ExitItem_Click"/>
+            </Menu>
+            <Image Name="AudioImg" Grid.Column="5" Source="Resources/audio.png" AutomationProperties.Name="AudioButton" MouseDown="audioChanged" VerticalAlignment="Center"/>
+        </Grid>
+        <!--<local:PlayField IsHiddenField="False" HorizontalAlignment="Left" Height="191" Margin="71,93,0,0" VerticalAlignment="Top" Width="191"/>-->
+
+        <local:PlayField x:Name="EnemyField" HorizontalAlignment="Right" Height="350" Margin="0,80,55,0" VerticalAlignment="Top" Width="350"/>
+        <local:PlayField x:Name="MyField" HorizontalAlignment="Left" Height="350" Margin="55,80,0,0" VerticalAlignment="Top" Width="350"/>
+        <Grid Height="31" Margin="0,418,0,0" VerticalAlignment="Bottom" IsEnabled="False">
+            <Label Name="MyTurnLabel" Content="Ваш ход" Background="#FF00287E" Foreground="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="1"/>
+        </Grid>
+        <ProgressBar Visibility="Hidden" Name="pr1" Height="30" Margin="0" VerticalAlignment="Bottom"/>
+        <Image gif:ImageBehavior.AnimateInDesignMode="False" gif:ImageBehavior.RepeatBehavior="20" gif:ImageBehavior.AutoStart="False" gif:ImageBehavior.AnimatedSource="/Resources/timer.gif"  Name="TimerImage"  Height="100" Margin="0,35,0,0" VerticalAlignment="Top" Width="100" HorizontalAlignment="Center"/>
+    </Grid>
+</Page>
