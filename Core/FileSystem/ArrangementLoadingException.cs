@@ -3,6 +3,9 @@ using System.Runtime.Serialization;
 
 namespace Core
 {
+    /// <summary>
+    /// Ошибка при загрузке расстановки кораблей
+    /// </summary>
     class LoadingArrangementException : Exception
     {
         public LoadingArrangementException()

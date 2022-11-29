@@ -5,7 +5,11 @@ namespace Core
     {
         private static System.Random random = new System.Random();
         private static System.Collections.Generic.List<Vector> Will = new System.Collections.Generic.List<Vector>();
-
+        /// <summary>
+        /// Уничтожен ли четырехпалубный корабль
+        /// </summary>
+        /// <param name="arrangement"></param>
+        /// <returns></returns>
         private static bool FindFourDestroyed(ShipArrangement arrangement)
         {
             int count = 0;
@@ -29,7 +33,11 @@ namespace Core
             }
             return false;
         }
-
+        /// <summary>
+        /// Есть ли живые корабли, кроме однопалубных
+        /// </summary>
+        /// <param name="arrangement"></param>
+        /// <returns></returns>
         private static bool SomethingExceptOne(ShipArrangement arrangement)
         {
             int count = 0;
@@ -53,7 +61,11 @@ namespace Core
             }
             return false;
         }
-
+        /// <summary>
+        /// Количество клеток, в которые не стреляли
+        /// </summary>
+        /// <param name="arrangement"></param>
+        /// <returns></returns>
         private static int Count(ShipArrangement arrangement)
         {
             int res = 0;
@@ -66,7 +78,10 @@ namespace Core
             }
             return res;
         }
-
+        /// <summary>
+        /// Заполняет список векторами
+        /// </summary>
+        /// <param name="arrangement"></param>
         private static void FillList(ShipArrangement arrangement)
         {
             for (int i = 0; i < 10; i++)
@@ -78,7 +93,11 @@ namespace Core
                 }
             }
         }
-
+        /// <summary>
+        /// Совершает ход бота
+        /// </summary>
+        /// <param name="g"></param>
+        /// <returns></returns>
         public static Point MakeAMove(Game g)
         {
             if (Will.Count == 0 && Count(g.ServerShipArrangement) < 28) FillList(g.ServerShipArrangement);

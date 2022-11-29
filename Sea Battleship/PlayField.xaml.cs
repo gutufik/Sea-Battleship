@@ -18,7 +18,7 @@ using System.Windows.Threading;
 namespace Sea_Battleship
 {
     /// <summary>
-    /// Логика взаимодействия для PlayField.xaml
+    /// Игровое поле
     /// </summary>
     public partial class PlayField : UserControl
     {

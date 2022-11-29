@@ -6,6 +6,9 @@ using System.Windows.Media.Imaging;
 
 namespace Sea_Battleship
 {
+    /// <summary>
+    /// Абстрактный класс, который описывает структуру всех кораблей (его координаты, количество жизней, положение вертикальное или горизонтальное)
+    /// </summary>
     public abstract class AShip
     {
         int size;
@@ -23,7 +26,13 @@ namespace Sea_Battleship
         public int Y { get => y; set => y = value; }
         public int CountAlive { get => countAlive; set => countAlive = value; }
         public bool IsDead { get => isDead; set => isDead = value; }
-
+        /// <summary>
+        /// Разместить корабль
+        /// </summary>
+        /// <param name="field"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="isHorizontal"></param>
         public void Place(PlayField field, int x, int y, bool isHorizontal)
         {
             X = x;
@@ -46,7 +55,10 @@ namespace Sea_Battleship
                 }
             }
         }
-
+        /// <summary>
+        /// Разместить корабль
+        /// </summary>
+        /// <param name="field"></param>
         public void Place(PlayField field)
         {
             if (IsHorizontal)
@@ -66,7 +78,9 @@ namespace Sea_Battleship
                 }
             }
         }
-
+        /// <summary>
+        /// Поменять ориентацию
+        /// </summary>
         private void ChangeOrientation()
         {
             for (int i = 0; i < size; i++)
@@ -74,7 +88,14 @@ namespace Sea_Battleship
                 Images[i].LayoutTransform = new RotateTransform(90);
             }
         }
-
+        /// <summary>
+        /// Находится ли корабль на данных координатах
+        /// </summary>
+        /// <param name="image"></param>
+        /// <param name="window"></param>
+        /// <param name="isOnline"></param>
+        /// <param name="isDead"></param>
+        /// <returns></returns>
         public bool isHere(Image image, PlayPage window, bool isOnline, out bool isDead)
         {
             isDead = false;
@@ -293,7 +314,15 @@ namespace Sea_Battleship
                 return false;
             }
         }
-
+        /// <summary>
+        /// Находится ли корабль на данных координатах
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="window"></param>
+        /// <param name="isOnline"></param>
+        /// <param name="isDead"></param>
+        /// <returns></returns>
         public bool isHere(int x, int y, PlayPage window, bool isOnline, out bool isDead)
         {
             isDead = false;
@@ -526,7 +555,10 @@ namespace Sea_Battleship
                 return false;
             }
         }
-
+        /// <summary>
+        /// Заполнить ячейки вокруг мертвого корабля
+        /// </summary>
+        /// <param name="grid"></param>
         public void SetAroundDead(Grid grid)
         {
             if (countAlive == 0)

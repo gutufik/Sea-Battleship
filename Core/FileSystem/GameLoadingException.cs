@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Core
 {
+    /// <summary>
+    /// Ошибка при загрузке игры
+    /// </summary>
     class GameLoadingException : Exception
     {
         public GameLoadingException()

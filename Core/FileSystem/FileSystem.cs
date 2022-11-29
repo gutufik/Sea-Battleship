@@ -12,7 +12,11 @@ namespace Core
 
     {
         private static Random random = new Random();
-
+        /// <summary>
+        /// Сохраняет растановку
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         private static string saveArrangement(bool[,] input)
         {
             bool[] field = CryptSystem.Lining<bool>(input);
@@ -79,7 +83,12 @@ namespace Core
             fileStream.Write(e.GetBytes(s), 0, e.GetBytes(s).Length);
             fileStream.Close();
         }
-
+        /// <summary>
+        /// Загружает расстановку
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        /// <exception cref="LoadingArrangementException"></exception>
         private static bool[,] loadArrangement(string input)
         {
 
@@ -161,6 +170,12 @@ namespace Core
             }
             return res;
         }
+        /// <summary>
+        /// Конвертирует расстановку кораблей в массив байтов
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
 
         private static byte[,] ArrangementsToByteArray(ShipArrangement a, ShipArrangement b) // да, я знаю, что этот код не самый очевидный. Рекомендую просто игнорировать его существование
         {
@@ -234,7 +249,11 @@ namespace Core
             }
             return result;
         }
-
+        /// <summary>
+        /// Восстанавливает расстановку из массива байтов
+        /// </summary>
+        /// <param name="map"></param>
+        /// <returns></returns>
         private static ShipArrangement[] ByteArrayToArrangements(byte[,] map) // см. комментарий к предыдущему методу
         {
             ShipArrangement[] result = new ShipArrangement[2];
@@ -289,7 +308,11 @@ namespace Core
             }
             return result;
         }
-
+        /// <summary>
+        /// Сохранение игры
+        /// </summary>
+        /// <param name="g"></param>
+        /// <returns></returns>
         private static string saveGame(Game g)
         {
             byte[,] result = new byte[10, 10];
@@ -442,6 +465,12 @@ namespace Core
             fileStream.Write(e.GetBytes(s), 0, e.GetBytes(s).Length);
             fileStream.Close();
         }
+        /// <summary>
+        /// Загрузка игры
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        /// <exception cref="GameLoadingException"></exception>
 
         private static Game loadGame(string input)
         {
@@ -556,6 +585,10 @@ namespace Core
             }
             return res;
         }
+        /// <summary>
+        /// Сохраненные расстановки
+        /// </summary>
+        /// <returns></returns>
 
         public static List<string> SavedArrangementList()
         {
@@ -570,6 +603,10 @@ namespace Core
             }
             return null;
         }
+        /// <summary>
+        /// Сохраненные игры
+        /// </summary>
+        /// <returns></returns>
 
         public static List<string> SavedGameList()
         {

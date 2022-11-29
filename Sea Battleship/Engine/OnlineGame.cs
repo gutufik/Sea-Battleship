@@ -28,13 +28,19 @@ namespace Sea_Battleship.Engine
             Placement = placement;
             InitGame(ip);
         }
-
+        /// <summary>
+        /// Установить настройки игры
+        /// </summary>
+        /// <param name="config"></param>
         public void SetGameSettings(GameConfig config)
         {
             GameConfig = config;
             GameConfig.Connection = ServerUtils.GetExternalIp() + ":27015";
         }
-
+        /// <summary>
+        /// Инициализация онлайн игры
+        /// </summary>
+        /// <param name="ip"></param>
         private void InitGame(IPAddress ip)
         {
             Connect = new Connection();
@@ -66,7 +72,11 @@ namespace Sea_Battleship.Engine
             //    window.Show();
             //}
         }
-
+        /// <summary>
+        /// Создание игры
+        /// </summary>
+        /// <param name="arragment"></param>
+        /// <exception cref="CookieException"></exception>
         public void CreateGame(ShipArrangement arragment)
         {
             EnemyArrangement = new ShipArrangement();
@@ -106,7 +116,10 @@ namespace Sea_Battleship.Engine
                 IsMyTurn = false;
             }
         }
-
+        /// <summary>
+        /// Загрузка игры
+        /// </summary>
+        /// <param name="game"></param>
         public void LoadGame(Game game)
         {
             Game = game;
@@ -121,7 +134,12 @@ namespace Sea_Battleship.Engine
             Connect.Server.SendResponse(OpearationTypes.ShipArrangement, new Network.ShipArrangement(MyArrangement));
             IsMyTurn = true;
         }
-
+        /// <summary>
+        /// Совершить ход
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
         public CellStatе Turn(int x, int y)
         {
             CellStatе cellRes;
@@ -143,7 +161,10 @@ namespace Sea_Battleship.Engine
             }
             return cellRes;
         }
-
+        /// <summary>
+        /// Ожидание хода противника
+        /// </summary>
+        /// <returns></returns>
         public Vector WaitEnemyTurn()
         {
             var res = Connect.GetOperation(PlayerRole);
@@ -171,7 +192,12 @@ namespace Sea_Battleship.Engine
             }
             return shotRes;
         }
-
+        /// <summary>
+        /// Установить результат выстрела на поле
+        /// </summary>
+        /// <param name="state"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         public void SetShotResult(CellStatе state, int x, int y)
         {
             if (PlayerRole == PlayerRole.Server)
@@ -183,7 +209,11 @@ namespace Sea_Battleship.Engine
                 EnemyArrangement.SetCellState(state, x, y);
             }
         }
-
+        /// <summary>
+        /// Результат выстрела
+        /// </summary>
+        /// <param name="coords"></param>
+        /// <returns></returns>
         public CellStatе CheckShot(Vector coords)
         {
             CellStatе newState = CellStatе.Water;
